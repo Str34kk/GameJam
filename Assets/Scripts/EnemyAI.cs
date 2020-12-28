@@ -6,8 +6,7 @@ public class EnemyAI : MonoBehaviour
 {
     public EnemyController2D controller;
     public float speed;
-
-    private int hp = 3;
+    public int hp = 3;
 
     void FixedUpdate()
     {

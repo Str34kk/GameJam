@@ -7,12 +7,12 @@ public class Menu : MonoBehaviour
 { 
     public void btnPlay()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Demo");
     }
 
     public void btnCredits()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene("Demo");
     }
 
     public void btnExit()

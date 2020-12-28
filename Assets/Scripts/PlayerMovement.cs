@@ -116,7 +116,6 @@ public class PlayerMovement : MonoBehaviour
 
         if (collision.gameObject.tag == "Enemy")
         {
-            Debug.Log("x");
             StartCoroutine(controller.WaitToDead());
         }
 
