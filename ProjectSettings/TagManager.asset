@@ -9,6 +9,7 @@ TagManager:
   - Light
   - Win
   - Brightness
+  - Wall
   layers:
   - Default
   - TransparentFX
