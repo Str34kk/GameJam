@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using UnityEngine.Experimental.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -74,6 +75,16 @@ public class PlayerMovement : MonoBehaviour
             Vector2 direction = new Vector2(transform.localScale.x, 0);
             throwableLight.GetComponent<Throwable>().direction = direction;
             throwableLight.name = "ThrowableLight";
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Application.LoadLevel(Application.loadedLevel);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(0);
         }
     }
 
