@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class Controller2D : MonoBehaviour
 {
@@ -124,6 +125,6 @@ public class Controller2D : MonoBehaviour
 		yield return new WaitForSeconds(0.4f);
 		m_Rigidbody2D.velocity = new Vector2(0, m_Rigidbody2D.velocity.y);
 		yield return new WaitForSeconds(1.1f);
-		//SceneManager.LoadSceneAsync();
+		SceneManager.LoadSceneAsync("menu");
 	}
 }
