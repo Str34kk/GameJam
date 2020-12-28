@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.Events;
 
 public class Controller2D : MonoBehaviour
@@ -18,6 +19,7 @@ public class Controller2D : MonoBehaviour
 	private Vector3 m_Velocity = Vector3.zero;
 	public Animator animator;
 	private bool canDoubleJump = true;
+	private bool canMove = true;
 
 	[Header("Events")]
 	[Space]
@@ -71,36 +73,39 @@ public class Controller2D : MonoBehaviour
 
 	public void Move(float move, bool jump)
 	{
-		if (m_Grounded || m_AirControl)
-		{
-			Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
-			m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
-
-			if (move > 0 && !m_FacingRight)
-			{
-				Flip();
-			}
-			else if (move < 0 && m_FacingRight)
-			{
-				Flip();
-			}
-		}
-
-		if (m_Grounded && jump)
-		{
-			animator.SetBool("IsJumping", true);
-			animator.SetBool("JumpUp", true);
-			m_Grounded = false;
-			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
-			canDoubleJump = true;
-		}
-        else if (!m_Grounded && jump && canDoubleJump)
+		if(canMove)
         {
-            canDoubleJump = false;
-            m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, 0);
-            m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce / 1.2f));
-			//animator.SetBool("IsDoubleJumping", true);
-			//animator.Play("DoubleRun");
+			if (m_Grounded || m_AirControl)
+			{
+				Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
+				m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
+
+				if (move > 0 && !m_FacingRight)
+				{
+					Flip();
+				}
+				else if (move < 0 && m_FacingRight)
+				{
+					Flip();
+				}
+			}
+
+			if (m_Grounded && jump)
+			{
+				animator.SetBool("IsJumping", true);
+				animator.SetBool("JumpUp", true);
+				m_Grounded = false;
+				m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+				canDoubleJump = true;
+			}
+			else if (!m_Grounded && jump && canDoubleJump)
+			{
+				canDoubleJump = false;
+				m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, 0);
+				m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce / 1.2f));
+				//animator.SetBool("IsDoubleJumping", true);
+				//animator.Play("DoubleRun");
+			}
 		}
     }
 
@@ -112,5 +117,13 @@ public class Controller2D : MonoBehaviour
 		transform.localScale = theScale;
 	}
 
-	
+	public IEnumerator WaitToDead()
+	{
+		canMove = false;
+		animator.SetBool("IsDead", true);
+		yield return new WaitForSeconds(0.4f);
+		m_Rigidbody2D.velocity = new Vector2(0, m_Rigidbody2D.velocity.y);
+		yield return new WaitForSeconds(1.1f);
+		//SceneManager.LoadSceneAsync();
+	}
 }

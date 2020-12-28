@@ -8,10 +8,6 @@ public class Throwable : MonoBehaviour
 	public bool hasHit = false;
 	public float speed = 10f;
 
-	void Start()
-    {
-		Destroy(gameObject, 5f);
-	}
 	void FixedUpdate()
 	{
 		if (!hasHit)
@@ -20,7 +16,7 @@ public class Throwable : MonoBehaviour
 
 	void OnCollisionEnter2D(Collision2D collision)
 	{
-		if (collision.gameObject.tag == "Player")
+		if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Enemy")
 		{
 			Destroy(gameObject);
 		}
