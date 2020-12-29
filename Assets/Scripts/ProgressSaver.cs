@@ -8,7 +8,7 @@ public class ProgressSaver : MonoBehaviour
 
     void Saver()
     {
-        if(Level > 0)
+        if (Level > 0)
         {
             PlayerPrefs.SetInt(Level.ToString(), 1);
         }

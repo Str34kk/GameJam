@@ -10,20 +10,26 @@ public class PlayerMovement : MonoBehaviour
     public Controller2D controller;
     public Animator animator;
     public CinemachineVirtualCamera vCam;
+    public Camera leftCam;
     public Transform cameraCenter;
     public Transform playerCenter;
     public GameObject throwablObject;
     public GameObject playerLight;
     public Light2D playerLightRadius;
-
     public float runSpeed = 40f;
 
     float horizontalMove = 0f;
-    private bool cameraOnPlayer = true;
     private bool jump = false;
 
     //bool dash = false;
-
+    void Awake()
+    {
+        if(!PlayerPrefs.HasKey("cameraOnPlayer"))
+        {
+            PlayerPrefs.SetInt("cameraOnPlayer", 1);
+        }
+        SetCameraView();
+    }
     [System.Obsolete]
     void Update()
     {
@@ -54,18 +60,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            if(!cameraOnPlayer)
-            {
-                vCam.m_Follow = playerCenter;
-                vCam.m_Lens.OrthographicSize = 4;
-                cameraOnPlayer = !cameraOnPlayer;
-            }
-            else if (cameraOnPlayer)
-            {
-                vCam.m_Follow = cameraCenter;
-                vCam.m_Lens.OrthographicSize = 5;
-                cameraOnPlayer = !cameraOnPlayer;
-            }
+            ChangeCameraView();
         }
 
         if (Input.GetKeyDown(KeyCode.E) && (playerLightRadius.pointLightOuterRadius > 0.3f))
@@ -93,7 +88,6 @@ public class PlayerMovement : MonoBehaviour
     {
         controller.Move(horizontalMove * Time.fixedDeltaTime, jump);
         jump = false;
-        //dash = false;
     }
 
     public void OnFall()
@@ -105,6 +99,35 @@ public class PlayerMovement : MonoBehaviour
     {
         animator.SetBool("IsDoubleJumping", false);
         animator.SetBool("IsJumping", false);
+    }
+
+    private void ChangeCameraView()
+    {
+        if (PlayerPrefs.GetInt("cameraOnPlayer") == 0)
+        {
+            vCam.m_Follow = playerCenter;
+            vCam.m_Lens.OrthographicSize = 4;
+            PlayerPrefs.SetInt("cameraOnPlayer", 1);
+        }
+        else if (PlayerPrefs.GetInt("cameraOnPlayer") == 1)
+        {
+            vCam.m_Follow = cameraCenter;
+            vCam.m_Lens.OrthographicSize = leftCam.orthographicSize;
+            PlayerPrefs.SetInt("cameraOnPlayer", 0);
+        }
+    }
+    private void SetCameraView()
+    {
+        if (PlayerPrefs.GetInt("cameraOnPlayer") == 1)
+        {
+            vCam.m_Follow = playerCenter;
+            vCam.m_Lens.OrthographicSize = 4;
+        }
+        if (PlayerPrefs.GetInt("cameraOnPlayer") == 0)
+        {
+            vCam.m_Follow = cameraCenter;
+            vCam.m_Lens.OrthographicSize = leftCam.orthographicSize;
+        }
     }
 
     [System.Obsolete]
@@ -122,6 +145,8 @@ public class PlayerMovement : MonoBehaviour
         }
         if (collision.gameObject.tag == "Spikes")
         {
+            collision.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            StartCoroutine(controller.WaitToSlice());
             StartCoroutine(controller.WaitToDead());
         }
 
