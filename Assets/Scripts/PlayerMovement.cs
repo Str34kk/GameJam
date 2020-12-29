@@ -114,14 +114,9 @@ public class PlayerMovement : MonoBehaviour
             playerLightRadius.pointLightOuterRadius += 0.2f;
         }
 
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Spikes")
         {
             StartCoroutine(controller.WaitToDead());
-        }
-
-        if (collision.gameObject.tag == "Win")
-        {
-            Debug.Log("GG");
         }
     }
 }
