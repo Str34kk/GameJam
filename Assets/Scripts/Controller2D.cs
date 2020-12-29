@@ -27,6 +27,7 @@ public class Controller2D : MonoBehaviour
 	private AudioClip runSound;
 	private AudioClip jumpUpSound;
 	private AudioClip jumpLandSound;
+	private AudioClip duckSound;
 
 	[Header("Events")]
 	[Space]
@@ -47,6 +48,7 @@ public class Controller2D : MonoBehaviour
 		runSound = Resources.Load<AudioClip>("Sound/Run");
 		jumpUpSound = Resources.Load<AudioClip>("Sound/JumpUp");
 		jumpLandSound = Resources.Load<AudioClip>("Sound/JumpLand");
+		duckSound = Resources.Load<AudioClip>("Sound/Duck");
 		animator = GetComponent<Animator>();
 
 		if (OnLandEvent == null)
@@ -149,5 +151,10 @@ public class Controller2D : MonoBehaviour
 		playerRigidbody2D.velocity = new Vector2(0, playerRigidbody2D.velocity.y);
 		yield return new WaitForSeconds(0.6f);
 		SceneManager.LoadSceneAsync("MainMenu");
+	}
+	public IEnumerator WaitToDuck()
+	{
+		yield return new WaitForSeconds(0.1f);
+		audioSrc.PlayOneShot(duckSound);
 	}
 }
