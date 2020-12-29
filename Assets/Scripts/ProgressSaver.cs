@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class ProgressSaver : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public int Level;
+
+    void Saver()
     {
-        
+        if(Level > 0)
+        {
+            PlayerPrefs.SetInt(Level.ToString(), 1);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        
+        if (collision.gameObject.tag == "Player")
+        {
+            Saver();
+        }
     }
 }
