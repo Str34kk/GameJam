@@ -106,6 +106,7 @@ MonoBehaviour:
   direction: {x: 0, y: 0}
   hasHit: 0
   speed: 5
+  lightRadius: {fileID: 2700953113537769883}
 --- !u!50 &2700953113537769884
 Rigidbody2D:
   serializedVersion: 4

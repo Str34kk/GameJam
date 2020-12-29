@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
+
 
 public class Throwable : MonoBehaviour
 {
 	public Vector2 direction;
 	public bool hasHit = false;
 	public float speed = 10f;
+	public Light2D lightRadius;
 
 	void FixedUpdate()
 	{
@@ -18,7 +21,19 @@ public class Throwable : MonoBehaviour
 	{
 		if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Enemy")
 		{
-			Destroy(gameObject);
+			StartCoroutine(DestroyLight());
 		}
+	}
+
+	IEnumerator DestroyLight()
+	{
+		lightRadius.pointLightOuterRadius -= 0.2f;
+		yield return new WaitForSeconds(0.05f);
+		lightRadius.pointLightOuterRadius -= 0.2f;
+		yield return new WaitForSeconds(0.05f);
+		lightRadius.pointLightOuterRadius -= 0.2f;
+		yield return new WaitForSeconds(0.05f);
+		lightRadius.pointLightOuterRadius -= 0.2f;
+		Destroy(gameObject);
 	}
 }
