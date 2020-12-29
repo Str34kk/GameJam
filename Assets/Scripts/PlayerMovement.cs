@@ -115,9 +115,15 @@ public class PlayerMovement : MonoBehaviour
             playerLightRadius.pointLightOuterRadius += 0.2f;
         }
 
-        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Spikes")
+        if (collision.gameObject.tag == "Enemy")
+        {
+            StartCoroutine(controller.WaitToDead());
+            StartCoroutine(controller.WaitToDuck());
+        }
+        if (collision.gameObject.tag == "Spikes")
         {
             StartCoroutine(controller.WaitToDead());
         }
+
     }
 }
