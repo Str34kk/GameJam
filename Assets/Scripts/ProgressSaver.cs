@@ -6,6 +6,10 @@ public class ProgressSaver : MonoBehaviour
 {
     public int Level;
 
+    void Awake()
+    {
+        Level += 1;
+    }
     void Saver()
     {
         if (Level > 0)

@@ -122,6 +122,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goRight: 0
-  goTop: 3
+  goTop: 0
   horizontalSpeed: 0
-  verticalSpeed: 1
+  verticalSpeed: 0
