@@ -11,6 +11,8 @@ public class Controller2D : MonoBehaviour
 	[SerializeField] private LayerMask whatIsGround;
 	[SerializeField] private Transform groundCheck;
 	[SerializeField] private Transform ceilingCheck;
+	[SerializeField] private AudioSource audioSrc;
+	[SerializeField] private Animator animator;
 
 	const float groundedRadius = .2f;
 	private bool grounded;
@@ -18,9 +20,13 @@ public class Controller2D : MonoBehaviour
 	private Rigidbody2D playerRigidbody2D;
 	private bool facingRight = true;
 	private Vector3 velocity = Vector3.zero;
-	public Animator animator;
 	private bool canDoubleJump = true;
 	private bool canMove = true;
+	private int canLand = 0;
+	private AudioClip attackSound;
+	private AudioClip runSound;
+	private AudioClip jumpUpSound;
+	private AudioClip jumpLandSound;
 
 	[Header("Events")]
 	[Space]
@@ -37,6 +43,10 @@ public class Controller2D : MonoBehaviour
 		QualitySettings.vSyncCount = 0;
 		Application.targetFrameRate = 60;
 		playerRigidbody2D = GetComponent<Rigidbody2D>();
+		attackSound = Resources.Load<AudioClip>("Sound/Attack");
+		runSound = Resources.Load<AudioClip>("Sound/Run");
+		jumpUpSound = Resources.Load<AudioClip>("Sound/JumpUp");
+		jumpLandSound = Resources.Load<AudioClip>("Sound/JumpLand");
 		animator = GetComponent<Animator>();
 
 		if (OnLandEvent == null)
@@ -62,6 +72,12 @@ public class Controller2D : MonoBehaviour
                 {
 					OnLandEvent.Invoke();
 					canDoubleJump = true;
+					canLand += 1;
+					if (canLand == 2)
+                    {
+						audioSrc.PlayOneShot(jumpLandSound);
+						canLand = 0;
+					}
 				}
 			}
 		}
@@ -98,17 +114,24 @@ public class Controller2D : MonoBehaviour
 				grounded = false;
 				playerRigidbody2D.AddForce(new Vector2(0f, jumpForce));
 				canDoubleJump = true;
+				audioSrc.PlayOneShot(jumpUpSound);
 			}
 			else if (!grounded && jump && canDoubleJump)
 			{
 				canDoubleJump = false;
 				playerRigidbody2D.velocity = new Vector2(playerRigidbody2D.velocity.x, 0);
 				playerRigidbody2D.AddForce(new Vector2(0f, jumpForce / 1.2f));
+				audioSrc.PlayOneShot(jumpUpSound);
 				//animator.SetBool("IsDoubleJumping", true);
 				//animator.Play("DoubleRun");
 			}
 		}
     }
+
+	public void ThrowLight()
+    {
+		audioSrc.PlayOneShot(attackSound);
+	}
 
 	private void Flip()
 	{
@@ -124,7 +147,7 @@ public class Controller2D : MonoBehaviour
 		animator.SetBool("IsDead", true);
 		yield return new WaitForSeconds(0.4f);
 		playerRigidbody2D.velocity = new Vector2(0, playerRigidbody2D.velocity.y);
-		yield return new WaitForSeconds(1.1f);
+		yield return new WaitForSeconds(0.6f);
 		SceneManager.LoadSceneAsync("MainMenu");
 	}
 }
