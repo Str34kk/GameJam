@@ -15,15 +15,7 @@ public class EnemyAI : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Wall")
-        {
-            speed = speed * -1f;
-        }
-        else if (collision.gameObject.tag == "Jump")
-        {
-            controller.Move(0, true);
-        }
-        else if (collision.gameObject.tag == "Player" && collision.gameObject.transform.localScale.x == transform.localScale.x)
+        if (collision.gameObject.tag == "Player" && collision.gameObject.transform.localScale.x == transform.localScale.x)
         {
             speed = speed * -1f;
         }
@@ -35,5 +27,17 @@ public class EnemyAI : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-    }   
+    }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Wall")
+        {
+            speed = speed * -1f;
+        }
+        else if (collision.gameObject.tag == "Jump")
+        {
+            controller.Move(0, true);
+        }
+    }
+
 }
