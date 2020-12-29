@@ -75,6 +75,7 @@ public class PlayerMovement : MonoBehaviour
             Vector2 direction = new Vector2(transform.localScale.x, 0);
             throwableLight.GetComponent<Throwable>().direction = direction;
             throwableLight.name = "ThrowableLight";
+            controller.ThrowLight();
         }
 
         if (Input.GetKeyDown(KeyCode.R))

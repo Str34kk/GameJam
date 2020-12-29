@@ -15,13 +15,17 @@ public class EnemyAI : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Wall")
         {
             speed = speed * -1f;
         }
         else if (collision.gameObject.tag == "Jump")
         {
             controller.Move(0, true);
+        }
+        else if (collision.gameObject.tag == "Player" && collision.gameObject.transform.localScale.x == transform.localScale.x)
+        {
+            speed = speed * -1f;
         }
         else if (collision.gameObject.tag == "ThrowableLight")
         {
