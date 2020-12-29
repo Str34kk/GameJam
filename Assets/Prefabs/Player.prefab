@@ -192,14 +192,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5420958f7c7aed14b9d4dd0153443f95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_JumpForce: 400
-  m_MovementSmoothing: 0.05
-  m_AirControl: 1
-  m_WhatIsGround:
+  jumpForce: 400
+  movementSmoothing: 0.05
+  airControl: 1
+  whatIsGround:
     serializedVersion: 2
     m_Bits: 512
-  m_GroundCheck: {fileID: 2618891192069031185}
-  m_CeilingCheck: {fileID: 2618891190925485040}
+  groundCheck: {fileID: 2618891192069031185}
+  ceilingCheck: {fileID: 2618891190925485040}
   animator: {fileID: 2618891190469089371}
   OnLandEvent:
     m_PersistentCalls:
