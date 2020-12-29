@@ -125,6 +125,6 @@ public class Controller2D : MonoBehaviour
 		yield return new WaitForSeconds(0.4f);
 		playerRigidbody2D.velocity = new Vector2(0, playerRigidbody2D.velocity.y);
 		yield return new WaitForSeconds(1.1f);
-		SceneManager.LoadSceneAsync("menu");
+		SceneManager.LoadSceneAsync("MainMenu");
 	}
 }
