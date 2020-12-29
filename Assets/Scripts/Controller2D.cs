@@ -13,6 +13,7 @@ public class Controller2D : MonoBehaviour
 	[SerializeField] private Transform ceilingCheck;
 	[SerializeField] private AudioSource audioSrc;
 	[SerializeField] private Animator animator;
+	[SerializeField] private Canvas LoseScreen;
 
 	const float groundedRadius = .2f;
 	private bool grounded;
@@ -151,7 +152,9 @@ public class Controller2D : MonoBehaviour
 		animator.SetBool("IsDead", true);
 		yield return new WaitForSeconds(0.4f);
 		playerRigidbody2D.velocity = new Vector2(0, playerRigidbody2D.velocity.y);
-		yield return new WaitForSeconds(0.6f);
+		yield return new WaitForSeconds(0.5f);
+		LoseScreen.gameObject.SetActive(true);
+		yield return new WaitForSeconds(1.25f);
 		SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
 	}
 	public IEnumerator WaitToDuck()
