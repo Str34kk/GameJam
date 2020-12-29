@@ -11,6 +11,7 @@ TagManager:
   - Brightness
   - Wall
   - Jump
+  - Spikes
   layers:
   - Default
   - TransparentFX
