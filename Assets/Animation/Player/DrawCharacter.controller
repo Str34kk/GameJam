@@ -624,7 +624,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13a6904bc84be2e4fb74df7040a18c13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSound: {fileID: 8300000, guid: 4fe8a6c48d6823643ba6f6260bccaed4, type: 3}
+  audioSound: {fileID: 8300000, guid: 6cd806db6915ca645976be12f539791f, type: 3}
   loop: 1
 --- !u!1102 &5480482791452383530
 AnimatorState:
@@ -715,7 +715,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Run
-  m_Speed: 2
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1173355889305371878}
