@@ -40,8 +40,8 @@ public class Controller2D : MonoBehaviour
 
 	private void Awake()
 	{
-		QualitySettings.vSyncCount = 0;
-		Application.targetFrameRate = 60;
+		//QualitySettings.vSyncCount = 0;
+		//Application.targetFrameRate = 60;
 		playerRigidbody2D = GetComponent<Rigidbody2D>();
 		attackSound = Resources.Load<AudioClip>("Sound/Attack");
 		jumpUpSound = Resources.Load<AudioClip>("Sound/JumpUp");
