@@ -7,6 +7,8 @@ public class EnemyAI : MonoBehaviour
     public EnemyController2D controller;
     public float speed;
     public int hp = 3;
+    public bool isBoss = false;
+    public BossController bossController;
 
     void FixedUpdate()
     {
@@ -25,6 +27,10 @@ public class EnemyAI : MonoBehaviour
             if (hp <= 0)
             {
                 Destroy(gameObject);
+                if(isBoss)
+                {
+                    bossController.OnBossKill();
+                }
             }
         }
     }
