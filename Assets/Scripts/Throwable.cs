@@ -33,6 +33,7 @@ public class Throwable : MonoBehaviour
 	{
 		lightRadius.pointLightOuterRadius -= 0.2f;
 		yield return new WaitForSeconds(0.05f);
+		gameObject.tag = "Untagged";
 		lightRadius.pointLightOuterRadius -= 0.2f;
 		yield return new WaitForSeconds(0.05f);
 		lightRadius.pointLightOuterRadius -= 0.2f;

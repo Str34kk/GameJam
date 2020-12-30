@@ -137,11 +137,13 @@ public class Controller2D : MonoBehaviour
 	{
 		canMove = false;
 		animator.SetBool("IsDead", true);
-		yield return new WaitForSeconds(0.4f);
+		yield return new WaitForSeconds(0.2f);
+		gameObject.tag = "Untagged";
+		yield return new WaitForSeconds(0.2f);
 		playerRigidbody2D.velocity = new Vector2(0, playerRigidbody2D.velocity.y);
 		yield return new WaitForSeconds(0.5f);
 		LoseScreen.gameObject.SetActive(true);
-		yield return new WaitForSeconds(1.25f);
+		yield return new WaitForSeconds(1f);
 		SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
 	}
 	public IEnumerator WaitToDuck()
