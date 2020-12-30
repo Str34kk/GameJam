@@ -13,6 +13,7 @@ public class Controller2D : MonoBehaviour
 	[SerializeField] private Transform ceilingCheck;
 	[SerializeField] private AudioSource audioSrc;
 	[SerializeField] private Animator animator;
+	[SerializeField] private Canvas LoseScreen;
 
 	const float groundedRadius = .2f;
 	private bool grounded;
@@ -22,11 +23,8 @@ public class Controller2D : MonoBehaviour
 	private Vector3 velocity = Vector3.zero;
 	private bool canDoubleJump = true;
 	private bool canMove = true;
-	private int canLand = 0;
 	private AudioClip attackSound;
-	private AudioClip runSound;
 	private AudioClip jumpUpSound;
-	private AudioClip jumpLandSound;
 	private AudioClip duckSound;
 	private AudioClip sliceSound;
 
@@ -46,9 +44,7 @@ public class Controller2D : MonoBehaviour
 		Application.targetFrameRate = 60;
 		playerRigidbody2D = GetComponent<Rigidbody2D>();
 		attackSound = Resources.Load<AudioClip>("Sound/Attack");
-		runSound = Resources.Load<AudioClip>("Sound/Run");
 		jumpUpSound = Resources.Load<AudioClip>("Sound/JumpUp");
-		jumpLandSound = Resources.Load<AudioClip>("Sound/JumpLand");
 		duckSound = Resources.Load<AudioClip>("Sound/Duck");
 		sliceSound = Resources.Load<AudioClip>("Sound/Slice");
 		animator = GetComponent<Animator>();
@@ -76,12 +72,6 @@ public class Controller2D : MonoBehaviour
                 {
 					OnLandEvent.Invoke();
 					canDoubleJump = true;
-					canLand += 1;
-					if (canLand == 2)
-                    {
-						audioSrc.PlayOneShot(jumpLandSound);
-						canLand = 0;
-					}
 				}
 			}
 		}
@@ -126,8 +116,6 @@ public class Controller2D : MonoBehaviour
 				playerRigidbody2D.velocity = new Vector2(playerRigidbody2D.velocity.x, 0);
 				playerRigidbody2D.AddForce(new Vector2(0f, jumpForce / 1.2f));
 				audioSrc.PlayOneShot(jumpUpSound);
-				//animator.SetBool("IsDoubleJumping", true);
-				//animator.Play("DoubleRun");
 			}
 		}
     }
@@ -151,7 +139,9 @@ public class Controller2D : MonoBehaviour
 		animator.SetBool("IsDead", true);
 		yield return new WaitForSeconds(0.4f);
 		playerRigidbody2D.velocity = new Vector2(0, playerRigidbody2D.velocity.y);
-		yield return new WaitForSeconds(0.6f);
+		yield return new WaitForSeconds(0.5f);
+		LoseScreen.gameObject.SetActive(true);
+		yield return new WaitForSeconds(1.25f);
 		SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
 	}
 	public IEnumerator WaitToDuck()

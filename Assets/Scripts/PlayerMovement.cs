@@ -37,21 +37,7 @@ public class PlayerMovement : MonoBehaviour
 
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            animator.SetBool("IsJumping", true);
-            animator.SetBool("JumpUp", true);
-            jump = true;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            animator.SetBool("IsJumping", true);
-            animator.SetBool("JumpUp", true);
-            jump = true;
-        }
-
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow))
         {
             animator.SetBool("IsJumping", true);
             animator.SetBool("JumpUp", true);
