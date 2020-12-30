@@ -40,11 +40,6 @@ public class Menu : MonoBehaviour
         SceneManager.LoadScene("Level1");
     }
 
-    public void btnCredits()
-    {
-        SceneManager.LoadScene("Level1");
-    }
-
     public void btnExit()
     {
         Application.Quit();
