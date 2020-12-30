@@ -49,4 +49,9 @@ public class Menu : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void goToLvl(string num)
+    {
+        SceneManager.LoadScene("Level" + num);
+    }
 }
