@@ -37,12 +37,12 @@ public class Menu : MonoBehaviour
     }
     public void btnPlay()
     {
-        SceneManager.LoadScene("Demo");
+        SceneManager.LoadScene("Level1");
     }
 
     public void btnCredits()
     {
-        SceneManager.LoadScene("Demo");
+        SceneManager.LoadScene("Level1");
     }
 
     public void btnExit()
