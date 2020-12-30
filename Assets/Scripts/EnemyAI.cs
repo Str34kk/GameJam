@@ -15,6 +15,7 @@ public class EnemyAI : MonoBehaviour
         controller.Move(speed * Time.fixedDeltaTime, false);
     }
 
+    [System.Obsolete]
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player" && collision.gameObject.transform.localScale.x == transform.localScale.x)
