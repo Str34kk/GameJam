@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ProgressSaver : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class ProgressSaver : MonoBehaviour
 
     void Awake()
     {
+        PlayerPrefs.SetInt("1", 1);
         Level += 1;
     }
     void Saver()
@@ -23,6 +25,7 @@ public class ProgressSaver : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             Saver();
+            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }
