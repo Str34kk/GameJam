@@ -25,7 +25,7 @@ public class ProgressSaver : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             Saver();
-            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 }
