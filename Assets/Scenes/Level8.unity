@@ -317,6 +317,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: spikes (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1660220355327342147, guid: 4799caee1f442ea448045628a73ae161,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1660220355327342149, guid: 4799caee1f442ea448045628a73ae161,
         type: 3}
       propertyPath: m_RootOrder
@@ -942,6 +947,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: spikes (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1660220355327342147, guid: 4799caee1f442ea448045628a73ae161,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 5.5616455
+      objectReference: {fileID: 0}
+    - target: {fileID: 1660220355327342147, guid: 4799caee1f442ea448045628a73ae161,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 2.347536
       objectReference: {fileID: 0}
     - target: {fileID: 1660220355327342149, guid: 4799caee1f442ea448045628a73ae161,
         type: 3}
@@ -1950,6 +1965,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: spikes (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1660220355327342147, guid: 4799caee1f442ea448045628a73ae161,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1660220355327342149, guid: 4799caee1f442ea448045628a73ae161,
         type: 3}
       propertyPath: m_RootOrder
@@ -2233,6 +2253,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: spikes
+      objectReference: {fileID: 0}
+    - target: {fileID: 1660220355327342147, guid: 4799caee1f442ea448045628a73ae161,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1660220355327342149, guid: 4799caee1f442ea448045628a73ae161,
         type: 3}
@@ -2857,6 +2882,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: spikes (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1660220355327342147, guid: 4799caee1f442ea448045628a73ae161,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1660220355327342149, guid: 4799caee1f442ea448045628a73ae161,
         type: 3}
