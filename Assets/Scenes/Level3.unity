@@ -382,6 +382,8 @@ MonoBehaviour:
   controller: {fileID: 75895298}
   speed: 4
   hp: 2
+  isBoss: 0
+  bossController: {fileID: 0}
 --- !u!114 &75895298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1412,7 +1414,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &906117989
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3234,6 +3236,8 @@ MonoBehaviour:
   controller: {fileID: 57727712164567372}
   speed: 4
   hp: 2
+  isBoss: 0
+  bossController: {fileID: 0}
 --- !u!70 &563637755105147090
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

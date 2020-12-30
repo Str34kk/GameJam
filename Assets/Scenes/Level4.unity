@@ -1236,7 +1236,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &906117989
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3147,6 +3147,8 @@ MonoBehaviour:
   controller: {fileID: 57727711914462794}
   speed: 4
   hp: 2
+  isBoss: 0
+  bossController: {fileID: 0}
 --- !u!95 &57727711914462796
 Animator:
   serializedVersion: 3
@@ -3268,6 +3270,8 @@ MonoBehaviour:
   controller: {fileID: 57727712304673011}
   speed: 4
   hp: 2
+  isBoss: 0
+  bossController: {fileID: 0}
 --- !u!114 &57727712304673011
 MonoBehaviour:
   m_ObjectHideFlags: 0
